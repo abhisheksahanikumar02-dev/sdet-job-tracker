@@ -25,3 +25,11 @@ jobs:
 
       - name: Run tracker
         run: python tracker.py
+      
+      - name: Commit updated jobs.csv
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add jobs.csv
+          git diff --staged --quiet || git commit -m "Update jobs.csv"
+          git push
